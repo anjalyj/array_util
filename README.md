@@ -20,3 +20,16 @@ ArrayUtil resize(ArrayUtil util, int length)
 		will resize the array and return the modified ArrayUtil. 
 		the array contents should be trimmed if new size is less and copied over if the new size is more.
 
+================================================================================================================
+
+Implement a findIndex method.
+
+int findIndex(ArrayUtil util, void* element)
+will return -1 if not found and the array index of the element if found
+
+for example to search 5 in [4,2,1,5,6,0]
+int x = 5;
+findIndex(util, &x) will return 3 
+
+================================================================================================================
+

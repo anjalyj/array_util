@@ -70,6 +70,10 @@ void times(void* hint, void* item){
 	*(int *)item = number * Hint;
 }
 
+void *sum(void* hint, void* previousItem, void* item){
+	*(int*)item= *(int*)previousItem + *(int*)item;
+	return (int*)item;
+}
 
 void square(void* hint,void* sourceItem, void* destinationItem){
 	int square = (*(int *)sourceItem) * (*(int *)sourceItem);
@@ -136,6 +140,15 @@ void forEach(ArrayUtil util, OperationFunc* operation, void* hint){
 		operation(hint,base);
 		base+=util.type_size;
 	}
+}
+
+void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* initialValue){
+	for(int i=0;i<util.length;i++){
+		void *result = reducer(hint,initialValue,util.base);
+		initialValue = result;
+		util.base+=util.type_size;
+	}
+	return initialValue;
 }
 
 

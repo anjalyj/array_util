@@ -40,5 +40,13 @@ typedef void OperationFunc( void* , void*);
 
 void forEach(ArrayUtil util, OperationFunc* operation, void* hint);
 
+typedef void* ReducerFunc( void* , void*, void*);
+
+void *sum(void* hint, void* previousItem, void* item);
+
+void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* initialValue);
+
+
+
 
 

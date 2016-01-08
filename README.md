@@ -57,17 +57,17 @@ can be used to find if a given number is even. Here the hint is not needed.
 int isDivisible(void* hint, void* item)
 can be used to find if a given number is divisible by the number mentioned in the hint.
 
-=================================================================================================================
+================================================================================================================
 
 Implement a findLast method similar to findFirst
 
-=================================================================================================================
+================================================================================================================
 
 Implement a count method to count the number of elements matching the criteria.
 
 int count(ArrayUtil util, MatchFunc* match, void* hint);
 
-=================================================================================================================
+================================================================================================================
 
 Implement a filter method to find the first n elements matching the criteria.
 
@@ -76,7 +76,7 @@ where destination is an array of pointers into which the address of the matching
  
 The method returns the number of elements which matches the criteria that have been copied onto the destination.
 
-=================================================================================================================
+================================================================================================================
 
 Implement a map method.
 void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint);
@@ -85,7 +85,7 @@ maps source to destination using the provided convert function.
 where the signature of the ConvertFunc is:
 void ConvertFunc(void* hint, void* sourceItem, void* destinationItem);
 
-=================================================================================================================
+================================================================================================================
 
 Implement forEach method
 void forEach(ArrayUtil util, OperationFunc* operation, void* hint);
@@ -94,5 +94,11 @@ performs operation on all items in the array.
 where the signature of the OperationFunc is:
 void OperationFunc(void* hint, void* item);
 
-=================================================================================================================
+================================================================================================================
 
+Implement reduce method
+void* reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue);
+returns the reduced answer.
+ 
+where the signature of ReducerFunc is:
+void* ReducerFunc(void* hint, void* previousItem, void* item);

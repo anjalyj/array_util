@@ -197,7 +197,6 @@ void test_forEach(){
 	((int *)a.base)[2]=3;
 	((int *)a.base)[3]=4;
 	((int *)a.base)[4]=5;
-	ArrayUtil b = create(4,5);
 	int num = 10;
 	forEach(a,&times,&num);
 	int *ele = (int *)a.base;
@@ -205,7 +204,20 @@ void test_forEach(){
 	assert(20==ele[1]);
 	assert(30==ele[2]);
 	assert(40==ele[3]);
-
 }
+
+void test_reduce(){
+	ArrayUtil a = create(4,5);
+	((int *)a.base)[0]=1;
+	((int *)a.base)[1]=2;
+	((int *)a.base)[2]=3;
+	((int *)a.base)[3]=4;
+	((int *)a.base)[4]=5;
+	int initialValue=0;
+	int num = 0;
+	int result = *(int *)reduce(a,&sum,&num,&initialValue);
+	assert(result==15);
+};
+
 
 	

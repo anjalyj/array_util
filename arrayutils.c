@@ -60,6 +60,15 @@ int isDivisible(void* hint, void* item){
 	return num % diviser == 0;
 }
 
+void increment(void* hint, void* sourceItem, void* destinationItem){
+	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
+}
+
+void square(void* hint,void* sourceItem, void* destinationItem){
+	int square = (*(int *)sourceItem) * (*(int *)sourceItem);
+	*(int *)destinationItem = square; 
+}
+
 void* findFirst(ArrayUtil util, MatchFunc* match, void* hint){
 	void *base = util.base;
 	for(int i=0; i<util.length; i++){
@@ -94,7 +103,7 @@ int count(ArrayUtil util, MatchFunc* match, void* hint){
 int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems ){
 	int count=0;
 	void *base=util.base;
-	for(int i=0;i<util.length;i++){
+	for(int i=0;(i<util.length && count<maxItems);i++){
 		if(match(hint,base)==1){
 			destination[count]=base;
 			++count;
@@ -102,6 +111,16 @@ int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int
 		base+=util.type_size;
 	}
 	return count;
+}
+
+void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint){
+	void *base=source.base;
+	void *base1=destination.base;
+	for(int i=0; i<source.length;i++){
+		convert(hint,base,base1);
+		base+=source.type_size;
+		base1+=destination.type_size;
+	}
 }
 
 

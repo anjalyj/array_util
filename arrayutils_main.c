@@ -2,6 +2,7 @@
 #include "arrayutils.h"
 #include <assert.h>
 
+
 void test_areEqual(){
 	ArrayUtil a=create(4,5);
 	ArrayUtil b=create(4,5);
@@ -85,7 +86,6 @@ void test_findLast_isEven(){
 	((int *)a.base)[2]=3;
 	((int *)a.base)[3]=4;
 	((int *)a.base)[4]=5;
-
 	int num = 2;
 	int * result = findLast(a,&isEven,&num);
 	assert(4==*result);
@@ -150,24 +150,44 @@ void test_filter_isDivisible(){
 	((int *)a.base)[3]=4;
 	((int *)a.base)[4]=5;
 	int num = 3,maxItem=5;
-	int * destination[5];
+	ArrayUtil b = create(4,5);
+	int ** destination = b.base;
 	int result = filter(a,&isDivisible,&num,(void**)destination,maxItem);
 	assert(result==1);
 	assert(*(int*)destination[0]==3);
 } 
-	
-int main(void){
-	test_areEqual();
-	test_resize();
-	test_findIndex();
-	test_dispose();
-	test_findFirst_isEven();
-	test_findFirst_isDivisible();
-	test_findLast_isEven();
-	test_findLast_isDivisible();
-	test_count_isEven();
-	test_count_isDivisible();
-	test_filter_isEven();
-	test_filter_isDivisible();
-	return 0;
+
+void test_filter_isDivisible_maxitems(){
+	ArrayUtil a = create(4,5);
+	((int *)a.base)[0]=1;
+	((int *)a.base)[1]=2;
+	((int *)a.base)[2]=3;
+	((int *)a.base)[3]=4;
+	((int *)a.base)[4]=5;
+	int num = 1,maxItem=4;
+	ArrayUtil b = create(4,5);
+	int ** destination = b.base;
+	int result = filter(a,&isDivisible,&num,(void**)destination,maxItem);
+	assert(result==4);
+	assert(*(int*)destination[0]==1);
+	assert(*(int*)destination[1]==2);
+	assert(*(int*)destination[2]==3);
+
+} 
+
+void test_map_increment(){
+	ArrayUtil a = create(4,5);
+	((int *)a.base)[0]=1;
+	((int *)a.base)[1]=2;
+	((int *)a.base)[2]=3;
+	((int *)a.base)[3]=4;
+	((int *)a.base)[4]=5;
+	ArrayUtil b = create(4,5);
+	int num = 2;
+	map(a,b,&increment,&num);
+	assert(3==(*(int *)b.base));
+	assert(4==(*(int *)b.base+1));
+	assert(5==(*(int *)b.base+2));
 }
+
+	

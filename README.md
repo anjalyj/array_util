@@ -58,3 +58,32 @@ int isDivisible(void* hint, void* item)
 can be used to find if a given number is divisible by the number mentioned in the hint.
 
 =================================================================================================================
+
+Implement a findLast method similar to findFirst
+
+=================================================================================================================
+
+Implement a count method to count the number of elements matching the criteria.
+
+int count(ArrayUtil util, MatchFunc* match, void* hint);
+
+=================================================================================================================
+
+Implement a filter method to find the first n elements matching the criteria.
+
+int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems );
+where destination is an array of pointers into which the address of the matching elements are copied onto. maxitems is the capacity of destination.
+ 
+The method returns the number of elements which matches the criteria that have been copied onto the destination.
+
+=================================================================================================================
+
+Implement a map method.
+void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint);
+maps source to destination using the provided convert function.
+
+where the signature of the ConvertFunc is:
+void ConvertFunc(void* hint, void* sourceItem, void* destinationItem);
+
+=================================================================================================================
+

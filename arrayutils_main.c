@@ -190,4 +190,22 @@ void test_map_increment(){
 	assert(5==(*(int *)b.base+2));
 }
 
+void test_forEach(){
+	ArrayUtil a = create(4,5);
+	((int *)a.base)[0]=1;
+	((int *)a.base)[1]=2;
+	((int *)a.base)[2]=3;
+	((int *)a.base)[3]=4;
+	((int *)a.base)[4]=5;
+	ArrayUtil b = create(4,5);
+	int num = 10;
+	forEach(a,&times,&num);
+	int *ele = (int *)a.base;
+	assert(10==ele[0]);
+	assert(20==ele[1]);
+	assert(30==ele[2]);
+	assert(40==ele[3]);
+
+}
+
 	

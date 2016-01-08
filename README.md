@@ -87,3 +87,12 @@ void ConvertFunc(void* hint, void* sourceItem, void* destinationItem);
 
 =================================================================================================================
 
+Implement forEach method
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint);
+performs operation on all items in the array.
+
+where the signature of the OperationFunc is:
+void OperationFunc(void* hint, void* item);
+
+=================================================================================================================
+

@@ -64,6 +64,13 @@ void increment(void* hint, void* sourceItem, void* destinationItem){
 	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
 }
 
+void times(void* hint, void* item){
+	int number = *(int *)item;
+	int Hint = *(int *)hint;
+	*(int *)item = number * Hint;
+}
+
+
 void square(void* hint,void* sourceItem, void* destinationItem){
 	int square = (*(int *)sourceItem) * (*(int *)sourceItem);
 	*(int *)destinationItem = square; 
@@ -122,5 +129,14 @@ void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hi
 		base1+=destination.type_size;
 	}
 }
+
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint){
+	void *base=util.base;
+	for(int i=0; i<util.length;i++){
+		operation(hint,base);
+		base+=util.type_size;
+	}
+}
+
 
 

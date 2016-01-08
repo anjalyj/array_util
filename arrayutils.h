@@ -34,3 +34,11 @@ void increment(void* hint, void* sourceItem, void* destinationItem);
 
 void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint);
 
+void times(void* hint, void* item);
+
+typedef void OperationFunc( void* , void*);
+
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint);
+
+
+
